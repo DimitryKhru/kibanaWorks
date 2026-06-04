@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: short-app-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: short-app
+  template:
+    metadata:
+      name: short-app
+      labels:
+        app: short-app
+    spec:
+      containers:
+        - name: short-app
+          image: antonlarichev/short-app:latest
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
